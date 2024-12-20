@@ -1,0 +1,1055 @@
+*{
+    border: px solid black;   
+    margin: 0px;
+    padding: 0px;
+
+}
+
+
+body{
+    background-color: white;
+    margin-bottom: 50px;
+    font-family: PT Serif, serif; font-weight: 400;
+
+}
+
+@media screen and (max-width:350px) {
+    body{
+        width: 310px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (min-width:350px) and (max-width:400px) {
+    body{
+        width: 375px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width:400px) and (max-width:500px) {
+    body{
+        width: 425px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* ----------------------------------------this is for navbar-------------------------------------------*/
+
+.cover{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.navbar{
+    background-color: white;
+    list-style-type: none;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+.navbar select{
+   flex-direction: row-reverse;
+}
+.navbar li a {
+    display: block; /* Makes the <a> cover the entire <li> */
+    width: 100%;
+    height: 100%;
+    text-align: center; /* Optional: Center text within the block */
+    padding: 10px; /* Adjust padding for better click area */
+    text-decoration: none; /* Remove underline */
+
+}
+
+.navbar1{ 
+    color: white;
+    text-align: center;
+    width: 180px;
+    height: 50px;
+    padding: 20px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+
+.navbar1 a{
+    color:black;
+    text-decoration: none;
+
+}
+.navbar1:hover {
+    background-color:whitesmoke;
+    
+}
+
+.img1{
+    border-radius: 50%;
+    height: 100px;
+}
+
+
+@media screen and (max-width:500px) {
+    .cover{
+        width: 320px;
+        overflow: hidden;
+        padding: 0px;
+        margin: 0px;
+        top: 0px;
+        left: 0px;
+        height: 20px;
+        box-shadow: 1px 1px 3px;
+
+    }
+    .img1{
+        display: none;
+    }
+    #navbarhome{
+        width: 40px;
+    }
+    .navbar1{
+        color: white;
+        text-align: center;
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        text-decoration: none;
+        box-sizing: content-box;
+        width: 80px;
+    }
+
+    .navbar1 a{
+        color:black;
+        text-decoration: none;
+    
+    }
+
+    .navbar1:hover {
+        background-color:whitesmoke;
+        
+    }
+    .navbar li a {
+
+        font-size: 10px; 
+        width: 100px;
+        height: 100%;
+        padding: 0px;
+        text-decoration: none;
+        margin: 3px;
+    
+    }
+
+}
+
+
+/*------------------------------------------- till here is for navbar only -----------------------------------*/
+
+
+
+
+/* -------------------------------------this is for the coverimg on the top --------------------------------------*/
+  .coverimg{
+    width: 1300px;
+    height: 400px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.coverimg1{
+    width: 1300px;
+    height: 450px;
+}
+
+@media screen and (max-width:500px) {
+    .coverimg{
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        margin-top: 10px;
+        margin: 0px;
+    }
+    .coverimg1{
+        width: 300px;
+        height: 200px;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------facts-------------------------------------------------------------------*/
+
+.third{
+    height: 200px;
+    background-color: white;
+}
+
+.blocks{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0px;
+    justify-content: space-between;
+
+}
+.inside-block{
+    border: thick double #a32962;
+    width: 250px;
+    height: 180px;
+    box-shadow: 3px 5px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    padding: 10px;
+
+}
+
+
+@media screen and (max-width:500px){
+.third{
+    width: 300px;
+    overflow: hidden;
+    height: 150px;
+}
+
+.blocks{
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.inside-block{
+    font-size: 8px;
+    border: thick solid #a32962;
+    box-sizing: border-box;
+    width: 200px;
+    height: 120px;
+}
+
+}
+
+
+/*------------------------------------------facts till here------------------------------------------------------------*/
+
+/*------------------------------------------------qoutes -------------------------------------------------------------*/
+
+
+@media screen and (max-width:500px) {
+    .trychange{
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        font-size: 8px;
+        margin: 0px;
+        padding: 0px;
+        left: 0px;
+        width: 200px;
+    }
+}
+
+.trychange{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+/*------------------------------------------------********---------------------------------------------------------*/
+
+/*--------------------------------------------food wastage article and image-----------------------------------------*/
+.foodwastage{
+    box-sizing: border-box;
+    height: 408px;
+    background-color: #C0C78C;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+
+}
+.foodwastage1{
+    font-family: PT Serif, serif;
+    font-weight: 400; 
+    font-style: normal;
+     padding: 40px; 
+    align-items: center;
+}
+
+@media screen and (max-width:500px) {
+   
+.foodwastage{
+        box-sizing: content-box;
+        width: 300px;
+        height: 308px;
+        margin: 0px;
+        background-color: #C0C78C;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        
+    
+ }
+.foodwastageimage{
+    width: 300px;
+
+}
+
+.foodwastagearticle{
+    width: 300px;
+    margin: 0px;
+    font-size: 8px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+
+.foodwastage1{
+    padding:0px;
+    margin: 0px;
+}
+
+.foodwastageimage1{
+    width: 300px;
+    height: 200px;
+}
+
+}
+
+/*--------------------------------------------------*******---------------------------------------------------------*/
+
+
+/*-------------------------------------------------------books------------------------------------------------------*/
+.bookswastage{
+    width: 100%;
+    height: 408px;
+    background-color: #825B32;
+    display: flex;
+    overflow: hidden;
+}
+.bookswastage1{
+height: 408px;
+}
+.bookswastage2{
+    height: 408px;
+    padding: 10px;
+}
+
+@media screen and (max-width:500px) {
+    .bookswastage{
+        display: flex;
+        flex-direction: column-reverse;
+        width: 300px;
+        height: 300px;
+        background-color: #825B32;
+        overflow: hidden;
+        box-sizing: content-box;
+        margin: 0px;
+        padding: 0px;
+    }
+    .bookswastage1{
+
+    height: 200px;
+    width: 300px;
+    overflow: hidden;
+    }
+    .bookswastage2{
+        height: 200px;
+        width: 300px;
+        overflow: hidden;
+        font-size: 10px;
+        padding: 2px;
+        margin: 0px;
+    }
+}
+
+
+/*----------------------------------------------------******---------------------------------------------------------*/
+
+
+/*--------------------------------------------------clotheswastage----------------------------------------------------*/
+.clothes{
+    width: 100%;
+    height: 407px;
+    background-color: #153448;
+    display: flex;
+}
+.clothes1{
+padding: 10px;
+}
+
+
+@media screen and (max-width:500px) {
+    .clothes{
+        width: 300px;
+        height: 300px;
+        background-color: #153448;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .clothes1{
+        height: 150px;
+        font-size: 10px;
+        width: 300px;
+        padding: 2px;
+    }
+    .clothes2{
+    height: 150px;
+    width: 300px;
+    }   
+}
+
+
+/*----------------------------------------------------********-----------------------------------------------------------*/
+
+/*---------------------------------------------------makingchange--------------------------------------------------------*/
+
+.makingchange{
+    padding: 20px;
+    width: 100%;
+    background-color: #1a374d;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+#textcolor{
+    color: #FFC207;
+}
+
+
+
+@media screen and (max-width:500px) {
+    .makingchange{
+        padding: 20px;
+        width: 300px;
+        background-color: #1a374d;
+        overflow: hidden;
+        box-sizing: border-box;
+        font-size: 10px;
+    }
+}
+
+/*-------------------------------------------------------***********--------------------------------------------------------*/
+
+/*--------------------------------------------------------indexlast---------------------------------------------------------*/
+
+.last{
+    box-shadow: 0 4px 8px #0000001a;
+    background-color: white;
+    padding: 10px;
+}
+.wellwishers{
+    display: flex;
+}
+
+.wellwishers1{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wellwishers2{
+    overflow: hidden; 
+    height: 350px; 
+    border-radius: 20%;
+    box-shadow: 1px 1px 5px;
+    margin: 20px;
+}
+
+
+.organizations{
+    display: flex;
+}
+.organizations1{
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.organizations2{
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.organizationimage{
+  border-radius: 10%;
+  box-shadow: 1px 1px 5px;
+  height: 500px;
+  width: 600px;
+
+}
+
+.food{
+    display: flex;
+}
+.food1{
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.food2{
+    width: 500px;
+     overflow: hidden;
+      height: 390px; 
+      margin: 30px;
+       border-radius: 10%; 
+       box-shadow: 1px 1px 5px; 
+}
+.foodimage{
+    width: 500px;
+    height: 400px;
+}
+
+
+@media screen and (max-width:500px) {
+    .last{
+        width: 300px;
+        overflow: hidden;
+        margin: 0px;
+        padding: 0px;
+        box-shadow: 0px 0px 0px;
+
+    }
+    .wellwishers{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 290px;
+    }
+    
+    .wellwishers1{
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 10px;
+    }
+    
+    .wellwishers2{
+        overflow: hidden; 
+        width:290px; 
+        height: 250px; 
+        border-radius: 10%;
+        box-shadow: 1px 1px 1px;
+        margin: 0px;
+        padding: 2px;
+    }
+    .wellwishersimage{
+        width: 290px;
+    }
+
+    .organizations{
+        
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 290px;
+        height: 600px;
+
+
+    }
+    .organizations1{
+        font-size: 10px;
+        width: 290px;
+        height: 300px;
+        margin: 0px;
+        box-sizing: border-box;
+}
+    .organizations2{
+        overflow: hidden; 
+        width:290px; 
+        height: 250px; 
+        border-radius: 10%;
+        box-shadow: 1px 1px 1px;
+        margin: 0px;
+        padding: 2px;
+    }
+    .organizationimage{
+        width: 290px;
+        height: 250px;
+    }
+
+    
+.food{
+    display: flex;
+    flex-direction: column;
+}
+.food1{
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.food2{
+    border: 1px solid;
+    width: 290px;
+    overflow: hidden;
+    height: 300px; 
+    border-radius: 10%; 
+    box-shadow: 1px 1px 5px; 
+    margin: 0px;
+}
+.foodimage{
+    width: 290px;
+    height: 300px;
+}
+}
+
+
+/*----------------------------------------------------------*******----------------------------------------------------------*/
+
+
+.request{
+    background-color: white;
+    border: px solid black;
+    height: 650px;
+    width: 1335px;
+    padding: 20px;
+    margin: 0px;
+  
+}
+.request1{
+    font-size: 24px;
+    font-family: "Abel", sans-serif;
+    border:  px solid black;
+    width: 50%;
+    height: 300px;
+   
+}
+.request2{
+    font-size: 22px;
+    font-family: "Abel", sans-serif;
+    border:  px solid black;
+    width: 50%;
+    height: 300px; 
+}
+.req1{
+    display: flex;
+}
+.req2{
+    display: flex;
+}
+
+
+.post{
+    padding: 20px 150px;
+    margin: 10px;
+    box-sizing: border-box;
+   
+}
+
+.post1{
+    background-color: white; 
+    padding: 20px 50px; 
+    font-size: 20px;
+     box-shadow: 1px 1px 5px;
+}
+.post2{
+    font-size: 24px; 
+    margin: 20px;
+}
+.post3{
+    margin: 0px; 
+    color: gray;
+    font-size: 16px; 
+}
+
+.post4{
+    display: flex;
+    flex-direction:row-reverse;
+    height: 55px; 
+}
+
+@media screen and (max-width:500px) {
+    .post{
+        width: 300px;
+        overflow: hidden;
+        margin: 10px;
+        padding: 2px;
+        box-sizing: border-box;
+    }
+    .post1{
+        background-color: white; 
+        font-size: 10px;
+        box-shadow: 1px 1px 5px;
+        padding: 10px;
+    }
+    .post2{
+        font-size: 14px; 
+        margin: 0px;
+        padding: 10px;
+    }
+    .post3{
+        margin: 0px; 
+        color: gray;
+        font-size: 8px; 
+    }
+    
+.post4{
+    display: flex;
+    flex-direction:row-reverse;
+    height: 20px; 
+}
+}
+
+
+.postheader{
+    display: inline;
+}
+
+
+.contactbutton{
+    color:#FFC207; 
+    background-color:#083455; 
+    width: 200px; 
+    height: 50px;
+    text-align: center;
+    font-size: medium;
+    box-shadow: 1px 1px 2px;
+}
+
+@media screen and (max-width:500px) {
+    .contactbutton{
+        color:#FFC207; 
+        background-color:#083455; 
+        width: 50px; 
+        height: 20px;
+        text-align: center;
+        font-size: 12px;
+        box-shadow: 1px 1px 1px;
+    }
+}
+
+
+.contactbutton:hover{
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdownbar{
+  border: 0px solid black;
+  margin-left: 400px;
+  height: 40px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+@media screen and (max-width:500px) {
+    .dropdownbar{
+        border: px solid black;
+        margin-left: 0px;
+        height: 10px;
+        margin: 0px;
+        font-size: 8px;
+        margin-top: 5px;
+        width: 100px;
+        overflow: hidden;
+      }
+}
+
+
+footer{
+    position:fixed;
+    bottom: 0%;
+    background-color: gray;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0px;
+}
+@media screen and (max-width:500px) {
+    footer{
+        position:fixed;
+        bottom: 0%;
+        background-color: gray;
+        height: 20px;
+        width: 300px;
+        text-align: center;
+        margin-bottom: 0px;
+        margin-right: 0px;
+    }
+}
+
+
+
+.forfood{
+margin-top: 20px;
+margin-bottom: 40px;
+margin-left: 10px;
+margin-right: 10px;
+overflow: hidden;
+padding: 10px;
+}
+
+.forfood2{
+    display: flex;
+     justify-content: space-around;
+}
+
+.otherform{
+    display:none;
+    margin-bottom: 30px;
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+.orgpost{
+    margin-bottom: 30px;
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width:500px) {
+    .forfood{
+        display:none;
+        margin-bottom: 30px;
+        margin: 10px;
+        padding: 10px;
+        overflow: hidden;
+        }
+        .forfood2{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .otherform{
+            display:none;
+            margin-bottom: 30px;
+            margin: 10px;
+            padding: 10px;
+            overflow: hidden;
+        }   
+        .orgpost{
+            margin-bottom: 30px;
+            margin: 10px;
+            padding: 10px;
+            overflow: hidden;
+        }
+        
+
+}
+
+.redalert{
+    text-align: center; 
+    font-size: 24px; 
+    color: red;
+}
+@media screen and (max-width:500px) {
+    .redalert{
+        margin-top: 10px;
+        text-align: center; 
+        font-size: 10px; 
+        color: red;
+    }
+}
+
+.greenalert{
+    color: green;
+    box-shadow: 1px 1px 5px; 
+    text-align: center; 
+    font-size: 20px; 
+    margin: 20px;
+}
+
+@media screen and (max-width:500px) {
+    .greenalert{
+        color: green;
+        box-shadow: 1px 1px 5px; 
+        text-align: center; 
+        font-size: 14px; 
+        margin: 20px;
+    }
+}
+
+.loginmain{
+    margin: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 3px;
+}
+
+.orgform1{
+
+    background-color: white;
+}
+.loginformradio{ 
+    text-align: center;
+    background-color: white;
+    border: px solid black;
+    padding: 20px;
+    margin-top: 0px;
+
+}
+
+.orgform{
+    text-align: center;
+    background-color: white;
+    border: px solid black;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.orglabel{
+    border: px solid ;
+    padding: 20px;
+    background-color: white;
+    width: 20%;
+    display: flex;
+    flex-direction: column; 
+}
+.orglabel1{
+    border: px solid;
+    margin: 5px;
+    padding: 10px;
+}
+
+.orginput{
+    padding: 20px;
+    border: px solid ;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.orginput1{
+    margin: 5px;
+    padding: 10px;
+}
+.orgsignup{
+    padding: 10px;
+    text-align: center;
+}
+.orgsignup1{
+    background-color: white;
+    padding: 12px;
+    width: 15%;
+}
+.orgsignup1:hover{
+    background-color: whitesmoke;
+    cursor:pointer;
+}
+
+.signup{
+    text-align: center;
+    border: px solid black;
+    background-color: white;
+    height: 50px;
+}
+
+.orgtable{
+    background-color: white;
+    text-align: center;
+    border: 1px solid black;
+    width: 100%;
+    border-spacing: 0px;
+}
+.userselect{
+    width: 20px;
+    height: 10px;
+    padding: 10px;
+}
+.useroption{
+    width: 20px;
+    height: 100px;
+}
+
+@media screen and (max-width:500px) {
+    .loginmain{
+        margin: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        box-shadow: 1px 1px 3px;
+        width: 300px;
+    }  
+    .orgform{
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        padding: 0px;
+    }
+    .orglabel{
+        background-color: white;
+        width: 100px;
+        display: flex;
+        padding: 0px;
+        margin: 0px;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .orglabel1{
+        width: 100px;
+        margin: 3px;
+        font-size: 10px;
+    }
+    
+.orginput{
+    padding: 20px;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.orginput1{
+    margin: 10px;
+    padding: 0px;
+}
+.orgsignup{
+    padding: 10px;
+    text-align: center;
+}
+.orgsignup1{
+    background-color: white;
+    padding: 12px;
+    width: 100px;
+}
+.orgsignup1:hover{
+    background-color: whitesmoke;
+    cursor:pointer;
+}
+
+.signup{
+    text-align: center;
+    border: px solid black;
+    background-color: white;
+    height: 50px;
+}
+}

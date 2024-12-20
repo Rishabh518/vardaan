@@ -1,0 +1,78 @@
+{% extends "layout.html"%}
+{% block body %}
+
+<div class="greenalert">please delete the posts that has been satisfied</div>
+
+{%if user=='wellwisher'%}
+{% for i in table1 %}
+<main class="post">
+<section class="post1">
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <h1>{{i[3]}}</h1>
+    <h1>{{i[5]}}</h1>
+</div>
+
+<p class="post2">{{i[4]}}</p>
+<p class="post3">post id{{i[0]}}</p>
+<div class="post4">
+    <form action="userdeletepost" method="post">
+        <input type="submit"  value="DELETE"  class="contactbutton">
+        <input type="text" value="{{i[0]}}" name="postid" style="display: none;">
+        <input type="text"  value="normalpost" name="posttype" style="display: none;">
+    </form>
+</div>
+</section>
+</main>
+{% endfor %}
+
+{% for i in table2 %}
+<main class="post">
+    <section  class="post1">
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <h1>{{i[3]}}</h1>
+        <h1>{{i[9]}}</h1>
+    </div>
+    
+    <p class="post2">{{i[4]}}</p>
+    <p class="post3">post id{{i[0]}}</p>
+    <div class="post4" >
+        <form action="userdeletepost" method="post">
+            <input type="submit"  value="DELETE"  class="contactbutton">
+            <input type="text" value="{{i[0]}}" name="postid" style="display: none;">
+            <input type="text" value="foodpost" name="posttype" style="display: none;">
+        </form>
+    
+    </div>
+    </section>
+</main>
+{% endfor %}
+{% else %}
+
+
+{% for i in data %}
+<main class="post">
+    <section class="post1">
+    <div style="display: flex; justify-content: space-between;">
+        <h3>{{i[2]}}</h3>
+        <h3>{{i[5]}}</h3>
+    </div>
+    <p class="post2"> {{i[3]}} </p>
+    <p class="post3">{{i[4]}}</p>
+    <p class="post3">post id: {{i[0]}}</p>
+    <div class="post4" >
+        
+        <form action="orgdeletepost" method="post">
+            <input type="submit"  value="DELETE"  class="contactbutton">
+            <input type="text" value="{{i[0]}}" name="postid" style="display: none;">
+        </form>
+    
+    </div>
+</section>
+</main>
+
+
+
+
+{%endfor%}
+{% endif %}
+{% endblock %}

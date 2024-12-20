@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<style>
+
+</style>
+
+{% if user =='wellwisher'%}
+    <div style="display: flex; align-items: self-start; justify-content:space-evenly; padding: 30px; margin: 10px;">
+        <p>FOOD <input type="radio" name="category" value="food" id="foodRadio" checked></p>
+        <p>OTHERS <input type="radio" name="category" value="others" id="othersRadio"></p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: red; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<!-- Form for food donation (visible by default) -->
+<section class="forfood" id="foodForm" style="display:block;">
+    <ul>
+        <li><p style="color: green;">Please mention if this food is made for any occasion</p></li>
+        <li><p style="color: green;">Please mention the quality of the food</p></li>
+        <li><p style="color: green;">At what time was this food prepared?</p></li>
+        <li><p style="color: green;">Mention food items</p></li>
+        <li><p style="color: red;">Delete the post after if it is satisfied or not</p></li>
+    </ul>
+    <form action="foodposting" method="post">
+        
+        <textarea style="width: 100%; height: 200px;" name="postdesc" placeholder="We have approximately 50 fresh, untouched meals leftover from today’s lunch service at our restaurant. The meals include a variety of dishes, such as rice, vegetables, and chicken curry. All food is in excellent condition, freshly prepared this afternoon, and properly stored."></textarea>
+        
+        <div class="forfood2">
+            <h3>Quantity Available: <input id="inb" type="number" name="avlqty" required></h3>
+            <h3>Pick Up location: <input id="inb" type="text" name="pickup" required></h3>
+            <h4>Pick Up Time: <input id="inb" type="time" name="picktime" required></h4>
+        </div>
+        
+        <p>
+            <input type="checkbox" required>I confirm that the food is still warm and in perfect condition for immediate consumption. This donation is available for any organization or individuals who need it.
+        </p>
+        <div style="text-align: center;">
+            <input type="submit" class="contactbutton">
+        </div>
+    
+    </form>
+</section>
+
+<section id="othersForm"  class="otherform">
+    <ul>
+        <li><p style="color: red; list-style: none;">Do not ask for money,if you found so your acccount will be banned </p></li>
+        <li><p style="color: red;">Do not mention your details in the post like contact or email</p></li>
+        <li><p style="color: red;">Do not ask for any kind of personal help</p></li>
+        <li><p style="color: red;">Delete the post after if it is satisfied</p></li>
+        <li><p style="color: green;">All you have to do is mention what you want to donate</p></li>
+        <li><p style="color: orange;">people will contact you through your email or mobile number</p></li>
+    </ul>
+    <fieldset>
+        <legend>Step toward helping the society !</legend>
+        <form action="posting" method="post">
+            <textarea name="postdesc" style="width: 100%; height: 300px;" placeholder="0-500 words only and only write your post description. Do not write any thank you or any kind of footer."></textarea>
+            <p>
+                <input type="checkbox" required>I confirm that whatever i am donating is for helping society,is in the good condition and not asking for money.
+
+            </p>
+            <div style="text-align: center;">
+                <input type="submit" class="contactbutton">
+            </div>
+        </form>
+    </fieldset>
+</section>
+
+<script>
+// JavaScript to toggle between the food and others forms
+document.getElementById('foodRadio').addEventListener('change', function() {
+    document.getElementById('foodForm').style.display = 'block';
+    document.getElementById('othersForm').style.display = 'none';
+});
+
+document.getElementById('othersRadio').addEventListener('change', function() {
+    document.getElementById('othersForm').style.display = 'block';
+    document.getElementById('foodForm').style.display = 'none';
+});
+</script>
+
+{% else %}
+<section  class="orgpost">
+    <ul>
+        <li><p style="color: red;">Do not ask for money,if you found so your acccount will be banned </p></li>
+        <li><p style="color: red;">Do not mention your details in the post like contact or email</p></li>
+        <li><p style="color: red;">Delete the post after if it is satisfied</p></li>
+        <li><p style="color: green;">All you have to do is mention for what purpose you need help</p></li>
+        <li><p style="color: orange;">people will contact you through your email or mobile number</p></li>
+    </ul>
+    <fieldset>
+        <legend>How Anyone Can Help You!</legend>
+        <form action="posting" method="post">
+            <textarea name="postdesc" style="width: 100%; height: 300px;" placeholder="0-500 words only and only write your post description. Do not write any thank you or any kind of footer."></textarea>
+        </fieldset>
+            <div style="text-align: center;">
+                <input type="submit" class="contactbutton">
+            </div>
+        </form>
+</section>
+
+{% endif %}
+{% endblock %}

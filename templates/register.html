@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block body %}
+    <style>
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: red; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    <div class="loginformradio">
+        <input type="radio" name="belongto" value="organization"  checked onclick="toggleForm('organization')" id="organizationRadio">
+        <label for="organizationRadio">Organization</label>
+        <input type="radio" name="belongto" value="wellwisher" onclick="toggleForm('wellwisher')" id="wellwisherRadio">
+        <label for="wellwisherRadio">WellWisher</label>
+    </div>
+
+    <form class="orgform1 hidden" id="organizationForm" action="orgregister" method="post">
+        <!-- this form is for registering an organization (NGO) -->
+        <section class="orgform">
+            <div class="orglabel">
+                <label for="orgname" class="orglabel1">Organization name:</label>
+                <label for="orgid" class="orglabel1">Organization Id:</label>
+                <label for="orgemail" class="orglabel1">Organization email:</label>
+                <label for="orgmobile" class="orglabel1">Organization contact:</label>
+                <label for="orgaddress" class="orglabel1">Organization Address:</label>
+                <label for="orgcountry" class="orglabel1">Organization country:</label>
+                <label for="orgstate" class="orglabel1">Organization state:</label>
+                <label for="orgdesc" class="orglabel1">Organization description:</label>
+                <label for="orgpswd" class="orglabel1">Organization Password:</label>
+            </div>
+            <div class="orginput">
+                <input type="text" name="orgname" class="orginput1" required>
+                <input type="text" name="orgid" class="orginput1" required>
+                <input type="email" name="orgemail" class="orginput1" required>
+                <input type="tel" name="orgmobile" class="orginput1" required>
+                <input type="text" name="orgaddress" class="orginput1" required>
+                <input type="text" name="orgcountry" class="orginput1" required>
+                <input type="text" name="orgstate" class="orginput1" required>
+                <input type="text" name="orgdesc" class="orginput1" required>
+                <input type="password" name="orgpswd" class="orginput1" required>
+            </div>
+        </section>
+        <div class="orgsignup">
+            <input type="submit" value="Register" class="contactbutton"><br>
+            <br>
+    
+        </div>
+    </form>
+
+    <form action="userregister" method="post" class="orgform1 hidden" id="wellwisherForm">
+        <section class="orgform">
+            <div class="orglabel">
+                <label for="username" class="orglabel1">Username:</label>
+                <label for="name" class="orglabel1">Name:</label>
+                <label for="mobile" class="orglabel1">Phone number:</label>
+                <label for="email" class="orglabel1">Email:</label>
+                <label for="address" class="orglabel1">Address:</label>
+                <label for="password" class="orglabel1">Password:</label>
+            </div>
+            <div class="orginput">
+                <input type="text" name="username" class="orginput1" required>
+                <input type="text" name="name" class="orginput1" required>
+                <input type="tel" name="mobile" class="orginput1" required>
+                <input type="email" name="email" class="orginput1" required>
+                <input type="address" name="address" class="orginput1" required>
+                <input type="password" name="password" class="orginput1" required>
+            </div>
+        </section>
+        <div class="orgsignup">
+            <input type="submit" value="Register" class="contactbutton"><br>
+            <br>
+        </div>
+    </form>
+
+    <script>
+        function toggleForm(userType) {
+            document.getElementById('organizationForm').classList.add('hidden');
+            document.getElementById('wellwisherForm').classList.add('hidden');
+            if (userType === 'organization') {
+                document.getElementById('organizationForm').classList.remove('hidden');
+            } else if (userType === 'wellwisher') {
+                document.getElementById('wellwisherForm').classList.remove('hidden');
+            }
+        }
+    
+        // Initialize the form visibility based on the checked radio button
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkedRadio = document.querySelector('input[name="belongto"]:checked');
+            if (checkedRadio) {
+                toggleForm(checkedRadio.value);
+            }
+        });
+    </script>
+    
+
+
+</body>
+</html>
+{% endblock%}

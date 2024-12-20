@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .flash-messages {
+            color: green; /* Customize as needed */
+            font-weight: bold;
+        }
+    </style>
+   <script>
+    function toggleForm(userType) {
+        document.getElementById('organizationForm').classList.add('hidden');
+        document.getElementById('wellwisherForm').classList.add('hidden');
+        if (userType === 'organization') {
+            document.getElementById('organizationForm').classList.remove('hidden');
+        } else if (userType === 'wellwisher') {
+            document.getElementById('wellwisherForm').classList.remove('hidden');
+        }
+    }
+
+    // Initialize the form visibility based on the checked radio button
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkedRadio = document.querySelector('input[name="belongto"]:checked');
+        if (checkedRadio) {
+            toggleForm(checkedRadio.value);
+        }
+    });
+</script>
+
+</head>
+<body>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: red; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+    
+<main class="loginmain">
+
+    <div class="loginformradio">
+        <input type="radio" name="belongto" value="organization" checked onclick="toggleForm('organization')" id="organizationRadio">
+        <label for="organizationRadio">Organization</label>
+        <input type="radio" name="belongto" value="wellwisher" onclick="toggleForm('wellwisher')" id="wellwisherRadio">
+        <label for="wellwisherRadio">WellWisher</label>
+    </div>
+
+    <form class="orgform1 hidden" id="organizationForm" action="orglogin" method="post">
+        <section class="orgform">
+            <div class="orglabel">
+                <label for="orgid" class="orglabel1">Organization Id:</label>
+                <label for="orgpswd" class="orglabel1">Organization Password:</label>
+            </div>
+            <div class="orginput">
+                <input type="text" name="orgid" class="orginput1" placeholder="Organization ID" required>
+                <input type="password" name="orgpswd" class="orginput1" placeholder="Password" required>
+            </div>
+        </section>
+        <div class="orgsignup">
+            <input type="submit" value="Login" class="contactbutton">
+            <br><br>
+            <h3><a href="{{url_for('register')}}">Sign Up! </a></h3>
+        </div>
+    </form>
+    <form action="userlogin" method="post" class="orgform1 hidden" id="wellwisherForm">
+        <section class="orgform">
+            <div class="orglabel">
+                <label for="username" class="orglabel1">Username:</label>
+                <label for="userpswd" class="orglabel1">Password:</label>
+            </div>
+            <div class="orginput">
+                <input type="text" name="username" class="orginput1" placeholder="Username" required>
+                <input type="password" name="userpswd" class="orginput1" placeholder="password" required>
+            </div>
+        </section>
+        <div class="orgsignup">
+            <input type="submit" value="Login" class="contactbutton">
+            <br><br>
+            <h3><a href="{{url_for('register')}}">Sign Up! </a></h3>
+        </div>
+    </form>
+
+
+
+
+
+
+</main>
+</body>
+
+{% endblock %}

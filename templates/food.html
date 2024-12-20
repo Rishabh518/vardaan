@@ -1,0 +1,81 @@
+{% extends  "layout.html" %}
+{% block body %}
+
+{% if contact=='notallowed' %}
+<div class="redalert"> You can only contact if your login </div>
+
+{% for i in data %}
+
+<main class="post">
+<section class="post1">
+    <div style="display: flex; justify-content: space-between;">
+    <h1>{{i[3]}}</h1> 
+    <h3>{{i[9]}}</h3>
+    </div>
+    <div>   
+    <p class="post2">{{i[4]}}</p>
+    </div>
+ 
+    <h4>Quantity: {{i[5]}}</h4>
+    <h4> Pick Up Time: {{i[7]}}</h4>
+    <address >{{i[6]}}</address>
+    
+    <div>
+        <p class="post3">postid:{{i[0]}}</p>
+    </div>
+</section>
+
+
+</main>
+
+
+{% endfor %}
+
+{% else %}
+
+{% for i in data %}
+
+<main class="post">
+<section class="post1">
+    <div style="display: flex; justify-content: space-between;">
+    <h1>{{i[3]}}</h1> 
+    <h3>{{i[9]}}</h3>
+    </div>
+    <div>   
+    <p class="post2">{{i[4]}}</p>
+    </div>
+ 
+    <h4>Quantity: {{i[5]}}</h4>
+    <h4> Pick Up Time: {{i[7]}}</h4>
+    <address >{{i[6]}}</address>
+
+    
+    <div>
+
+        <p class="post3">postid:{{i[0]}}</p>
+    </div>
+
+    {%if contact=='allowed'%}
+    <div class="post4" >
+    <form action="foodcontact" method="post">
+        <input type="submit" value="Contact" class="contactbutton">
+        <input type="text" name="username" value="{{i[1]}}" style="display: none;">
+        <input type="text"  name="postid" value="{{i[0]}}" style="display: none;">
+    </form>
+</div>
+    {% endif %}
+
+</section>
+
+
+</main>
+
+
+{% endfor %}
+
+    
+{% endif %}
+
+
+
+{% endblock%}

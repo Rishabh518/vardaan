@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vardaan</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="/images/Vaardan.jpg" type="image/Vardaan">
+
+</head>
+<body>
+    <section class="cover">
+        <div>
+            <ul class="navbar">
+                <li class="img1" ><img src="{{url_for('images',filename='Vaardan.jpg') }}" alt="Vardaan logo"></a></li>
+                <li class="navbar1" id="navbarhome"><a href="{{url_for('home')}}">HOME</a></li>
+                <li class="navbar1"><a href="{{url_for('donate')}}">DONATING</a></li>
+                <li class="navbar1"><a href="{{url_for('organizations')}}">ORGANIZATIONS</a></li>
+                <li class="navbar1" id="navbarhome" style="margin-right: 0px;"><a href="{{url_for('food')}}">FOOD</a></li>
+                {% if username == 'nouser' %}
+                <li class="navbar1" style=" margin-left: auto;"><a href="{{url_for('login')}}">LOGIN</a></li>
+                {% else %}
+                <select class="dropdownbar" id="dropdownbar" onchange="location = this.value;">
+                    <option style="color: black;"  value="{{url_for('home')}}">{{username}}</option>
+                    <option value="{{url_for('post')}}">POST</option>
+                    <option value="{{url_for('myposts')}}">MYPOSTS</option>
+                    <option value="{{url_for('logout')}}">LOGOUT</option>
+                </select>
+                
+                <script>
+                    document.getElementById('dropdownbar').addEventListener('change', function() {
+                        if (this.value) {
+                            window.location.href = this.value;
+                        }
+                    });
+                </script>
+               
+                {% endif %}
+            </ul>
+        </div>
+</section>
+
+ {%  block body  %}{% endblock %}
+
+     
+<footer>
+    © Vardaan 2024
+</footer>
+
+
+</body>
+</html>
