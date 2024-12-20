@@ -1,5 +1,4 @@
 from flask import *
-from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash
 from datetime import date
 from flask_mail import Mail,Message
