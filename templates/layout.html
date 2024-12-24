@@ -19,10 +19,10 @@
         <div>
             <ul class="navbar">
                 <li class="img1" ><img src="{{url_for('images',filename='Vaardan.jpg') }}" alt="Vardaan logo"></a></li>
-                <li class="navbar1" id="navbarhome"><a href="{{url_for('home')}}">HOME</a></li>
+                <li class="navbar1" ><a href="{{url_for('home')}}">HOME</a></li>
                 <li class="navbar1"><a href="{{url_for('donate')}}">DONATING</a></li>
                 <li class="navbar1"><a href="{{url_for('organizations')}}">ORGANIZATIONS</a></li>
-                <li class="navbar1" id="navbarhome" style="margin-right: 0px;"><a href="{{url_for('food')}}">FOOD</a></li>
+                <li class="navbar1"  style="margin-right: 0px;"><a href="{{url_for('food')}}">FOOD</a></li>
                 {% if username == 'nouser' %}
                 <li class="navbar1" style=" margin-left: auto;"><a href="{{url_for('login')}}">LOGIN</a></li>
                 {% else %}

@@ -1,5 +1,4 @@
-from flask import *
-from flask_mysqldb import MySQL
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
 from werkzeug.security import generate_password_hash
 from datetime import date
 from flask_mail import Mail,Message
@@ -148,19 +147,19 @@ def orgregister():
 
             # Check if the organization ID already exists to avoid duplicate entries
             cursor.execute('SELECT * FROM organization WHERE org_id = ?', (orgid,))
-            existing_org = cursor.fetchone()[0]
+            existing_org = cursor.fetchone()
             if existing_org:
                 flash('Organization ID already exists. Please choose a different ID.', 'error')
                 return redirect('/orgregister')
             
             cursor.execute('SELECT * FROM organization WHERE org_name = ?', (orgname,))
-            existing_orgname = cursor.fetchone()[0]
+            existing_orgname = cursor.fetchone()
             if existing_orgname:
                 flash('Organization name already exists', 'error')
                 return redirect('/orgregister')
             
             cursor.execute('SELECT * FROM organization WHERE org_email = ?', (orgemail,))
-            existing_orgemail = cursor.fetchone()[0]
+            existing_orgemail = cursor.fetchone()
             if existing_orgemail:
                 flash('Organization email already exists.', 'error')
                 return redirect('/orgregister')
@@ -169,7 +168,7 @@ def orgregister():
                 return redirect('/orgregister')
             
             cursor.execute('SELECT * FROM organization WHERE org_mobile= ?', (orgmobile,))
-            existing_orgmobile = cursor.fetchone()[0]
+            existing_orgmobile = cursor.fetchone()
             if existing_orgmobile:
                 flash('This mobile number already exists', 'error')
                 return redirect('/orgregister')
@@ -222,15 +221,15 @@ def userregister():
             cursor = conn.cursor()
             
             # Check if username already exists
-            cursor.execute('SELECT * FROM wellwisher WHERE username = ?', (username,))
-            existing_user = cursor.fetchone()[0]
+            cursor.execute('SELECT username FROM wellwisher WHERE username = ?', (username,))
+            existing_user = cursor.fetchone()
 
             if existing_user:
                 flash('Username already exists. Please choose another.', 'error')
                 return redirect('/userregister')
             
             cursor.execute('SELECT email FROM wellwisher WHERE email = ?', (email,))
-            existing_email=cursor.fetchone()[0]
+            existing_email=cursor.fetchone()
 
             if existing_email:
                 flash('email already exists. Please choose another.', 'error')
@@ -242,7 +241,7 @@ def userregister():
             
 
             cursor.execute('SELECT mobileno FROM wellwisher WHERE mobileno = ?', (mobile,))
-            existing_mobile=cursor.fetchone()[0]
+            existing_mobile=cursor.fetchone()
 
             if existing_mobile:
                 flash('This phone number already exist. Please choose another.','error')
@@ -252,9 +251,6 @@ def userregister():
                 flash('Please enter a valid mobile number')
                 return redirect('/userregister')
                 
-
-
-
             # Insert new user into the database
             cursor.execute('''INSERT INTO wellwisher (username, name, mobileno, email, address, password) 
                               VALUES (?, ?, ?, ?, ?, ?)''', 
@@ -265,8 +261,6 @@ def userregister():
             # Success message
             flash('Registration successful! Please log in.', 'success')
             return redirect('/login')
-
-
         except Exception as e:
             # Handle any other exceptions
             flash(f"An unexpected error occurred: {str(e)}", 'error')

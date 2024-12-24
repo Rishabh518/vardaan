@@ -1,8 +1,17 @@
-Amazon VPC -- virtual private network it allows the resource of the cloud to intract with each other on the cloud it block public access to the resources . it provides a vitual environment in the cloud . after creating a vpc attach it to your resources . in vpc we can make subsets of ip addresss and add it to the resources . Now to have our resource or ecs instance be publically accessible we add internet gateway which will allow public access . it is always recommended to add your resouces at two availability zone if one goes down so other keep working 
-
-ACL and  security group
-
-ACL(access contolled list)----- acl lets you allow what kind of traffic is allowed to enter or leave your subnet.
-
-security group ---  can create a virtual firewall called a security group. in this we also filter the traffic while configuring we dont have to add outbound rule as it is a stateful protocol  it remembers from the where the souce originated
-
+blinker==1.9.0
+click==8.1.7
+Flask==3.1.0
+Flask-Mail==0.10.0
+Flask-MySQLdb==2.0.0
+itsdangerous==2.2.0
+Jinja2==3.1.4
+joblib==1.4.2
+MarkupSafe==3.0.2
+mysql==0.0.3
+mysqlclient==2.2.6
+numpy==2.2.0
+pyodbc==5.2.0
+scikit-learn==1.6.0
+scipy==1.14.1
+threadpoolctl==3.5.0
+Werkzeug==3.1.3

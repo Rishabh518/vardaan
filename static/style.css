@@ -15,16 +15,7 @@ body{
 
 @media screen and (max-width:350px) {
     body{
-        width: 310px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-@media screen and (min-width:350px) and (max-width:400px) {
-    body{
-        width: 375px;
+        width: 20rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -32,9 +23,10 @@ body{
     }
 }
 
-@media screen and (min-width:400px) and (max-width:500px) {
+
+@media screen and (min-width:350px) and (max-width:500px) {
     body{
-        width: 425px;
+        width: 40rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -107,7 +99,7 @@ body{
 
 @media screen and (max-width:500px) {
     .cover{
-        width: 320px;
+        width: 34rem;
         overflow: hidden;
         padding: 0px;
         margin: 0px;
@@ -120,18 +112,18 @@ body{
     .img1{
         display: none;
     }
-    #navbarhome{
-        width: 40px;
-    }
+
     .navbar1{
         color: white;
         text-align: center;
         display: flex;
-        margin: 0px;
+        margin-left: 0.4rem;
+        margin-right: 0.2rem;
         padding: 0px;
         text-decoration: none;
         box-sizing: content-box;
-        width: 80px;
+        width: 5rem;
+
     }
 
     .navbar1 a{
@@ -145,7 +137,6 @@ body{
         
     }
     .navbar li a {
-
         font-size: 10px; 
         width: 100px;
         height: 100%;
@@ -177,14 +168,15 @@ body{
 
 @media screen and (max-width:500px) {
     .coverimg{
-        width: 300px;
+        width: 37rem;
         height: 200px;
         overflow: hidden;
         margin-top: 10px;
         margin: 0px;
+        padding: 2em;
     }
     .coverimg1{
-        width: 300px;
+        width: 36rem;
         height: 200px;
     }
 }
@@ -224,7 +216,7 @@ body{
 
 @media screen and (max-width:500px){
 .third{
-    width: 300px;
+    width: 32rem;
     overflow: hidden;
     height: 150px;
 }
@@ -261,7 +253,7 @@ body{
         margin: 0px;
         padding: 0px;
         left: 0px;
-        width: 200px;
+        width: 35rem;
     }
 }
 
@@ -301,7 +293,7 @@ body{
    
 .foodwastage{
         box-sizing: content-box;
-        width: 300px;
+        width: 35rem;
         height: 308px;
         margin: 0px;
         background-color: #C0C78C;
@@ -312,12 +304,12 @@ body{
     
  }
 .foodwastageimage{
-    width: 300px;
-
+    width: 35rem;
+    height: 210px;
 }
 
 .foodwastagearticle{
-    width: 300px;
+    width: 35rem;
     margin: 0px;
     font-size: 8px;
     display: flex;
@@ -332,8 +324,8 @@ body{
 }
 
 .foodwastageimage1{
-    width: 300px;
-    height: 200px;
+    width: 35rem;
+    height: 210px;
 }
 
 }
@@ -361,7 +353,7 @@ height: 408px;
     .bookswastage{
         display: flex;
         flex-direction: column-reverse;
-        width: 300px;
+        width: 35rem;
         height: 300px;
         background-color: #825B32;
         overflow: hidden;
@@ -369,15 +361,16 @@ height: 408px;
         margin: 0px;
         padding: 0px;
     }
-    .bookswastage1{
 
-    height: 200px;
-    width: 300px;
+    .bookswastage1{
+    height: 220px;
+    width: 35rem;
     overflow: hidden;
     }
+
     .bookswastage2{
-        height: 200px;
-        width: 300px;
+        height: 100px;
+        width: 35rem;
         overflow: hidden;
         font-size: 10px;
         padding: 2px;
@@ -403,7 +396,7 @@ padding: 10px;
 
 @media screen and (max-width:500px) {
     .clothes{
-        width: 300px;
+        width: 35rem;
         height: 300px;
         background-color: #153448;
         display: flex;
@@ -411,14 +404,14 @@ padding: 10px;
         overflow: hidden;
     }
     .clothes1{
-        height: 150px;
+        height: 80px;
         font-size: 10px;
-        width: 300px;
+        width: 35rem;
         padding: 2px;
     }
     .clothes2{
-    height: 150px;
-    width: 300px;
+    height: 220px;
+    width: 35rem;
     }   
 }
 
@@ -443,7 +436,7 @@ padding: 10px;
 @media screen and (max-width:500px) {
     .makingchange{
         padding: 20px;
-        width: 300px;
+        width: 35rem;
         background-color: #1a374d;
         overflow: hidden;
         box-sizing: border-box;
@@ -532,18 +525,25 @@ padding: 10px;
 
 @media screen and (max-width:500px) {
     .last{
-        width: 300px;
+        width: 35rem;
         overflow: hidden;
         margin: 0px;
         padding: 0px;
         box-shadow: 0px 0px 0px;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
     }
     .wellwishers{
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        width: 290px;
+        width: 35rem;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
     }
     
     .wellwishers1{
@@ -553,11 +553,12 @@ padding: 10px;
         align-items: center;
         flex-direction: column;
         font-size: 10px;
+        
     }
     
     .wellwishers2{
         overflow: hidden; 
-        width:290px; 
+        width:18rem; 
         height: 250px; 
         border-radius: 10%;
         box-shadow: 1px 1px 1px;
@@ -565,25 +566,29 @@ padding: 10px;
         padding: 2px;
     }
     .wellwishersimage{
-        width: 290px;
+        width: 18rem
     }
 
     .organizations{
-        
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        width: 290px;
-        height: 600px;
+        width: 35rem;
+        margin: 20px;
+        justify-content: center;
+        align-items: center;
 
 
     }
     .organizations1{
         font-size: 10px;
-        width: 290px;
-        height: 300px;
-        margin: 0px;
+        width: 35rem;
+        margin: 10px;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 }
     .organizations2{
         overflow: hidden; 
@@ -603,9 +608,12 @@ padding: 10px;
 .food{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 38rem;
 }
 .food1{
-    width: 290px;
+    width: 35rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -794,7 +802,7 @@ footer{
         bottom: 0%;
         background-color: gray;
         height: 20px;
-        width: 300px;
+        width: 45rem;
         text-align: center;
         margin-bottom: 0px;
         margin-right: 0px;
