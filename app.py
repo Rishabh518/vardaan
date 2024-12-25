@@ -32,7 +32,8 @@ try:
     print("Connection successful!")
 except odbc.Error as e:
     print("Error:", e)
-mail=Mail
+
+mail=Mail(app)
 Today=date.today()
 date=Today
 
@@ -68,10 +69,13 @@ def donate():
         username='nouser'  
         contact="notallowed"
     #this is for wellwiher posts
-    cursor = conn.cursor()
-    cursor.execute(''' SELECT * FROM wellwisher_posts WHERE status='active' ORDER BY post_id DESC ''')
-    post_details=cursor.fetchall()
-    cursor.close()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(''' SELECT * FROM wellwisher_posts WHERE status='active' ORDER BY post_id DESC ''')
+        post_details=cursor.fetchall()
+        cursor.close()
+    except:
+        return redirect('/home')    
     return render_template('donate.html',username=username,contact=contact,post_details=post_details)
 
 
@@ -194,7 +198,7 @@ def orgregister():
 
         except Exception as e:
             # Handling any exceptions that occur during the registration process
-            flash(f"An error occurred: {e}", 'error')
+            flash('The information is not valid. Please try again.')
             return redirect('/orgregister')
 
     # Rendering the registration form for GET requests
@@ -284,6 +288,7 @@ def userlogin():
             cursor.execute(''' SELECT email FROM wellwisher WHERE username= ? ''',(username,))
             email=cursor.fetchone()
             session['email'] = email[0] if email else None
+            session['login']=True
             return redirect('/home')
         else:
            flash('Invalid username or password', 'error')
@@ -308,11 +313,13 @@ def orglogin():
             cursor.close()
             session['username']=org_name
             session['email']=email
+            session['login']=True
             return redirect('/home')
         else:
            flash('Invalid username or password', 'error')
         return redirect('/login')   
-        
+    return redirect('/login')
+
 @app.route('/logout')
 def logout():
     if 'username' in session:
@@ -321,10 +328,11 @@ def logout():
 
 @app.route('/post')
 def post():
-    if 'username' in session:
+    if 'username' in session and session['login']==True:
         username = session['username']
     else:
         username='nouser'
+        return redirect('/login')
     if session['who']=='organization':
         user='organization'
     else:
@@ -416,48 +424,57 @@ def foodposting():
 @app.route('/orgcontact',methods=['POST','GET'])
 def orgcontact():
     if request.method=="POST":
-        orgname=request.form['orgname']
-        cursor=conn.cursor()
-        cursor.execute(''' SELECT org_mobile FROM organization WHERE org_name=? ''',(orgname,))
-        mobile=cursor.fetchone()[0]
-        cursor.execute(''' SELECT org_email FROM organization WHERE org_name=? ''',(orgname,))
-        email=cursor.fetchone()[0]
-        recipient=session['email'][0]
-        cursor.close()
-        msg=Message('Vardaan',recipients=[recipient])
-        msg.body = f"""As you requested for the details of {orgname} for donations, here are the details:
-        \nEmail: {email}
-        \nMobile number: {mobile}
-        \nThank you for helping society by taking the initiative!
-        \nVardaan"""
-        mail.send(msg)
-        return redirect('/organizations')
+        try:
+            orgname=request.form['orgname']
+            cursor=conn.cursor()
+            cursor.execute(''' SELECT org_mobile FROM organization WHERE org_name=? ''',(orgname,))
+            mobile=cursor.fetchone()[0]
+            cursor.execute(''' SELECT org_email FROM organization WHERE org_name=? ''',(orgname,))
+            email=cursor.fetchone()[0]
+            recipient=session['email']
+            cursor.close()
+            msg=Message('Vardaan',recipients=[recipient])
+            msg.body = f"""As you requested for the details of {orgname} for donations, here are the details:
+            \nEmail: {email}
+            \nMobile number: {mobile}
+            \nThank you for helping society by taking the initiative!
+            \nVardaan"""
+            mail.send(msg)
+            flash('Details sent to your email','success')   
+            return redirect('/organizations')
+        except:
+            return redirect('/organizations')
 
 @app.route('/usercontact',methods=['POST','GET'])  
 def usercontact():
     if request.method=='POST':
-        username=request.form['username']
-        postid=request.form['postid']
-        cursor=conn.cursor()
-        cursor.execute('SELECT name FROM wellwisher_posts WHERE username = ?',(username,))
-        name=cursor.fetchone()[0]
-        cursor.execute(''' SELECT email FROM wellwisher WHERE username=?''',(username,))
-        email=cursor.fetchone()[0]
-        cursor.execute('SELECT mobileno FROM wellwisher WHERE username = ?',(username,))
-        mobile=cursor.fetchone()[0]
-        recipient=session['email'][0]
-        cursor.execute('SELECT postdesc FROM wellwisher_posts WHERE post_id = ?',(postid,))
-        post_desc=cursor.fetchone()[0]
-        cursor.close()
-        msg=Message('Vardaan',recipients=[recipient])
-        msg.body=f"""As you requested for the details of {name} for :
-        \n{post_desc}, here are the details:
-        \nEmail: {email}
-        \nMobile number: {mobile}
-        \nThank you for helping society by taking the initiative!
-        \nVardaan"""
-        mail.send(msg)
-        return redirect('/donate')
+        try:
+            username=request.form['username']
+            postid=request.form['postid']
+            cursor=conn.cursor()
+            cursor.execute('SELECT name FROM wellwisher_posts WHERE username = ?',(username,))
+            name=cursor.fetchone()[0]
+            cursor.execute(''' SELECT email FROM wellwisher WHERE username=?''',(username,))
+            email=cursor.fetchone()[0]
+            cursor.execute('SELECT mobileno FROM wellwisher WHERE username = ?',(username,))
+            mobile=cursor.fetchone()[0]
+            recipient=session['email']
+            cursor.execute('SELECT postdesc FROM wellwisher_posts WHERE post_id = ?',(postid,))
+            post_desc=cursor.fetchone()[0]
+            cursor.close()
+            msg=Message('Vardaan',recipients=[recipient])
+            msg.body=f"""As you requested for the details of {name} for :
+            \n{post_desc}, here are the details:
+            \nEmail: {email}
+            \nMobile number: {mobile}
+            \nThank you for helping society by taking the initiative!
+            \nVardaan"""
+            mail.send(msg)
+            flash('Details sent to your email','success')
+            return redirect('/donate')
+            
+        except:
+            return redirect('/donate')
 
 @app.route('/foodcontact',methods=['POST','GET'])
 def foodcontact():
@@ -487,10 +504,11 @@ def foodcontact():
 
 @app.route('/myposts')
 def myposts():
-    if 'username' in session:
+    if 'username' in session and session['login']==True:
         username = session['username']    
     else:
         username='nouser'
+        return redirect('/login')
     cursor=conn.cursor()
     if session['who']=='wellwisher':
         user='wellwisher'
@@ -528,7 +546,8 @@ def orgdeletepost():
         cursor.execute('''UPDATE organization_posts SET status=? WHERE post_id=? ''',('Closed',postid))
         cursor.commit()
         cursor.close()
-        return redirect('/myposts')
+    return redirect('/myposts')
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,15 @@
 {% extends  "layout.html" %}
 {% block body %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: green; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 {% if contact =='notallowed' %}
 
 <div class="redalert"> You can only contact if your login </div>

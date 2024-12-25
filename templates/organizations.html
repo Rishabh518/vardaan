@@ -1,6 +1,15 @@
 {% extends  "layout.html" %}
 {% block body %}
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: green; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 {% if contact =='notallowed' %}
 
 <div class="redalert" > You can only contact if your login </div>
@@ -53,7 +62,7 @@
 <div class="post4"  >
     <form action="orgcontact" method="post">
         <input type="submit" value="Contact" class="contactbutton" >
-        <input type="text" value="{{i[1]}}" style="display:none" name="orgname">
+        <input type="text" value="{{i[2]}}" style="display:none" name="orgname">
     </form>
 </div>
 {% endif %}
