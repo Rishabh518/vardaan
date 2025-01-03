@@ -1,9 +1,4 @@
-*{
-    border: px solid black;   
-    margin: 0px;
-    padding: 0px;
 
-}
 
 
 body{
@@ -155,7 +150,7 @@ body{
 
 
 /* -------------------------------------this is for the coverimg on the top --------------------------------------*/
-  .coverimg{
+.coverimg{
     width: 1300px;
     height: 400px;
     overflow: hidden;
@@ -187,7 +182,8 @@ body{
 /*--------------------------------------------facts-------------------------------------------------------------------*/
 
 .third{
-    height: 200px;
+    height: 500px;
+    width: 100%;
     background-color: white;
 }
 

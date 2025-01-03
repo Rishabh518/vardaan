@@ -1,6 +1,12 @@
 {% extends  "layout.html" %}
 {% block body %}
-
+<div style="border: 1px solid; display: flex; flex-direction: row; justify-content: space-around; background-color: rgb(191, 167, 138);">
+    <form method="get" action="/food">
+        Global<input type="radio" name="scope" value="global">
+        Local <input type="radio" name="scope" value="local" checked>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 {% if contact=='notallowed' %}
 <div class="redalert"> You can only contact if your login </div>
 
@@ -9,16 +15,18 @@
 <main class="post">
 <section class="post1">
     <div style="display: flex; justify-content: space-between;">
-    <h1>{{i[3]}}</h1> 
-    <h3>{{i[9]}}</h3>
+    <h3>{{i[3]}}</h3> 
+    <h3>{{i[12]}}</h3>
     </div>
     <div>   
     <p class="post2">{{i[4]}}</p>
     </div>
- 
+    <div style="padding: 50px;">
+        <img style="width: 100%; height: 500px;" src="{{i[14]}}" alt="">
+    </div>
     <h4>Quantity: {{i[5]}}</h4>
     <h4> Pick Up Time: {{i[7]}}</h4>
-    <address >{{i[6]}}</address>
+    <address >{{i[10]}}</address>
     
     <div>
         <p class="post3">postid:{{i[0]}}</p>
@@ -38,16 +46,18 @@
 <main class="post">
 <section class="post1">
     <div style="display: flex; justify-content: space-between;">
-    <h1>{{i[3]}}</h1> 
-    <h3>{{i[9]}}</h3>
+    <h3>{{i[3]}}</h3> 
+    <h3>{{i[12]}}</h3>
     </div>
     <div>   
     <p class="post2">{{i[4]}}</p>
     </div>
- 
+    <div style="padding: 50px;">
+        <img style="width: 100%; height: 500px;" src="{{i[14]}}" alt="">
+    </div>
     <h4>Quantity: {{i[5]}}</h4>
     <h4> Pick Up Time: {{i[7]}}</h4>
-    <address >{{i[6]}}</address>
+    <address >{{i[10]}}</address>
 
     
     <div>

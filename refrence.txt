@@ -1,5 +1,5 @@
 ----------------------------------------front page --------------------------------
-nav bar--------Home,about us,donate,those in need (oranganizations) , Register/login.
+nav bar--------Home,donate(thoose who want to donate things),those in need (oranganizations) , FOOD ,Register/login.
 displaying where food is available
 oranganizations that in need
 about us

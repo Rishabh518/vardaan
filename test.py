@@ -117,9 +117,16 @@ cursor.execute(query5)
 cursor.commit()
 print=("query5 executed")
 '''
+query='Truncate table wellwisher_posts'
+query3='ALTER TABLE food_post ALTER COLUMN imageurl VARCHAR(100) NULL;'
+cursor.execute(query3)
 
-cursor.execute('SELECT * from wellwisher')
-rows = cursor.fetchall()
-rows_list = [dict(zip([column[0] for column in cursor.description], row)) for row in rows]
-json_data = json.dumps(rows_list)
-print(json_data)
+
+cursor.commit()
+
+print('successfull!!')
+
+Hi i have some old clothes that are in good condition they are not of my use because i have loose my weight and thoose clothes are in xl pr xxl size so if you need them or know any people need them please feel free to contact
+
+I There we are organising a blanket distribution drive at phase 10 market. we need some people while distributing so they can help us or can bring any unused blankets if they have any . Thank you for your support!!
+

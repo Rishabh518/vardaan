@@ -1,9 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<style>
-
-</style>
 
 {% if user =='wellwisher'%}
     <div style="display: flex; align-items: self-start; justify-content:space-evenly; padding: 30px; margin: 10px;">
@@ -21,17 +18,17 @@
     {% endif %}
 {% endwith %}
 <!-- Form for food donation (visible by default) -->
-<section class="forfood" id="foodForm" style="display:block;">
-    <ul>
+<section class="forfood" id="foodForm" style="display:block; padding: 20px;">
+    <ul style="margin: 20px;">
         <li><p style="color: green;">Please mention if this food is made for any occasion</p></li>
         <li><p style="color: green;">Please mention the quality of the food</p></li>
         <li><p style="color: green;">At what time was this food prepared?</p></li>
         <li><p style="color: green;">Mention food items</p></li>
         <li><p style="color: red;">Delete the post after if it is satisfied or not</p></li>
     </ul>
-    <form action="foodposting" method="post">
+    <form action="foodposting" method="post" enctype="multipart/form-data">
         
-        <textarea style="width: 100%; height: 200px;" name="postdesc" placeholder="We have approximately 50 fresh, untouched meals leftover from today’s lunch service at our restaurant. The meals include a variety of dishes, such as rice, vegetables, and chicken curry. All food is in excellent condition, freshly prepared this afternoon, and properly stored."></textarea>
+        <textarea style="width: 100%; height: 200px;" name="postdesc" placeholder="We have approximately 50 fresh, untouched meals leftover from today’s lunch service at our restaurant. The meals include a variety of dishes, such as rice, vegetables, and curry. All food is in excellent condition, freshly prepared this afternoon, and properly stored."></textarea>
         
         <div class="forfood2">
             <h3>Quantity Available: <input id="inb" type="number" name="avlqty" required></h3>
@@ -42,6 +39,11 @@
         <p>
             <input type="checkbox" required>I confirm that the food is still warm and in perfect condition for immediate consumption. This donation is available for any organization or individuals who need it.
         </p>
+        <div style=" display: flex; align-items: center; justify-content: center; flex-direction: column; margin: 2rem; padding: 2rem;"> 
+            <h1>Upload an Image</h1>      
+                <input type="file" name="img" accept="image/*"  style="margin-bottom: 10px; padding: 5px;" required>
+                
+        </div>
         <div style="text-align: center;">
             <input type="submit" class="contactbutton">
         </div>
@@ -49,8 +51,8 @@
     </form>
 </section>
 
-<section id="othersForm"  class="otherform">
-    <ul>
+<section id="othersForm"  class="otherform" style="padding: 20px;">
+    <ul style="margin: 20px;">
         <li><p style="color: red; list-style: none;">Do not ask for money,if you found so your acccount will be banned </p></li>
         <li><p style="color: red;">Do not mention your details in the post like contact or email</p></li>
         <li><p style="color: red;">Do not ask for any kind of personal help</p></li>
@@ -60,17 +62,24 @@
     </ul>
     <fieldset>
         <legend>Step toward helping the society !</legend>
-        <form action="posting" method="post">
+        <form action="posting" method="post" enctype="multipart/form-data">
             <textarea name="postdesc" style="width: 100%; height: 300px;" placeholder="0-500 words only and only write your post description. Do not write any thank you or any kind of footer."></textarea>
+        </fieldset>
             <p>
                 <input type="checkbox" required>I confirm that whatever i am donating is for helping society,is in the good condition and not asking for money.
 
             </p>
+        
+            <div style=" display: flex; align-items: center; justify-content: center; flex-direction: column; margin: 2rem; padding: 2rem;"> 
+                <h1>Upload an Image</h1>      
+                <input type="file" name="img" accept="image/*" style="margin-bottom: 10px; padding: 5px;" required>   
+            </div>
+            
             <div style="text-align: center;">
                 <input type="submit" class="contactbutton">
             </div>
         </form>
-    </fieldset>
+    
 </section>
 
 <script>
@@ -87,6 +96,8 @@ document.getElementById('othersRadio').addEventListener('change', function() {
 </script>
 
 {% else %}
+
+
 <section  class="orgpost">
     <ul>
         <li><p style="color: red;">Do not ask for money,if you found so your acccount will be banned </p></li>
@@ -95,16 +106,29 @@ document.getElementById('othersRadio').addEventListener('change', function() {
         <li><p style="color: green;">All you have to do is mention for what purpose you need help</p></li>
         <li><p style="color: orange;">people will contact you through your email or mobile number</p></li>
     </ul>
+
     <fieldset>
         <legend>How Anyone Can Help You!</legend>
-        <form action="posting" method="post">
+        <form action="posting" method="post" enctype="multipart/form-data">
             <textarea name="postdesc" style="width: 100%; height: 300px;" placeholder="0-500 words only and only write your post description. Do not write any thank you or any kind of footer."></textarea>
-        </fieldset>
+      </fieldset>
+    <p>
+        <input type="checkbox" required>I confirm that the food is still warm and in perfect condition for immediate consumption. This donation is available for any organization or individuals who need it.
+    </p>
+
+    <div style=" display: flex; align-items: center; justify-content: center; flex-direction: column; margin: 2rem; padding: 2rem;"> 
+        <h1>Upload an Image</h1>      
+            <input type="file" name="img" accept="image/*"  style="margin-bottom: 10px; padding: 5px;" required>
+            
+    </div>
             <div style="text-align: center;">
                 <input type="submit" class="contactbutton">
             </div>
-        </form>
+        
+    </form>
+        
 </section>
+
 
 {% endif %}
 {% endblock %}

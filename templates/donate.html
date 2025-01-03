@@ -10,6 +10,15 @@
         </ul>
     {% endif %}
     {% endwith %}
+    <div style="border: 1px solid; display: flex; flex-direction: row; justify-content: space-around; background-color: rgb(191, 167, 138);">
+        <form method="get" action="/donate">
+            Global<input type="radio" name="scope" value="global">
+            Local <input type="radio" name="scope" value="local" checked>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+
 {% if contact =='notallowed' %}
 
 <div class="redalert"> You can only contact if your login </div>
@@ -23,6 +32,9 @@
     </div>
     <div  class="post2">
     {{i[4]}}  
+    </div>
+    <div style="padding: 50px;">
+        <img style="width: 100%; height: 500px;" src="{{i[10]}}" alt="post image">
     </div>
     <div>
         <address style="width: 300px;">
@@ -48,6 +60,9 @@
     </div>
     <div class="post2" >
     {{i[4]}}  
+    </div>
+    <div style="padding: 50px;">
+        <img style="width: 100%; height: 500px;" src="{{i[10]}}" alt="">
     </div>
     <div>
         <address style="width: 300px;">

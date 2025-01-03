@@ -9,68 +9,54 @@
             {% endfor %}
         </ul>
     {% endif %}
-    {% endwith %}
-{% if contact =='notallowed' %}
+{% endwith %}
 
-<div class="redalert" > You can only contact if your login </div>
-
-
-{% for i in post_details%}
-<section  class="post">
-    <article class="post1" >
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="postheader">{{i[2]}}</h1>
-        <h4 class="postheader" style="margin: 0;">{{i[5]}}</h4>
-    </div>
-    <div  class="post2"  >
-    {{i[3]}}    
-    </div>
-    <div>
-        <address style=" width: 300px;">
-            {{i[4]}}
-        </address>
-    </div>
-    <div>
-        <p  class="post3" >postid:{{i[0]}}</p>
-    </div>
-</article>
-</section>
-{% endfor %}
-
-{% else %}
-
-{% for i in post_details%}
-<section class="post">
-    <article class="post1">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="postheader">{{i[2]}}</h1>
-        <h4 class="postheader" style="margin: 0;">{{i[5]}}</h4>
-    </div>
-    <div class="post2" >
-    {{i[3]}}    
-    </div>
-    <div>
-        <address style=" width: 300px;">
-            {{i[4]}}
-        </address>
-    </div>
-    <div>
-        <p  class="post3" >postid:{{i[0]}}</p>
-    </div>
-
-{% if contact =='allowed' %}
-<div class="post4"  >
-    <form action="orgcontact" method="post">
-        <input type="submit" value="Contact" class="contactbutton" >
-        <input type="text" value="{{i[2]}}" style="display:none" name="orgname">
+<div style="border: 1px solid; display: flex; flex-direction: row; justify-content: space-around; background-color: rgb(191, 167, 138);">
+    <form method="get" action="/organizations">
+        Global<input type="radio" name="scope" value="global">
+        Local <input type="radio" name="scope" value="local" checked>
+        <input type="submit" value="Submit">
     </form>
 </div>
+
+{% if contact == 'notallowed' %}
+    <div class="redalert">You can only contact if you're logged in</div>
 {% endif %}
-</article>
-</section>
+
+{% for i in post_details %}
+    <section class="post">
+        <article class="post1">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="postheader">{{ i[2] }}</h1>
+                <h4 class="postheader" style="margin: 0;">{{ i[8] }}</h4>
+            </div>
+            <div class="post2">
+                {{ i[3] }}
+            </div>
+            {% if i[10] %}
+                <div style="padding: 50px;">
+                    <img style="width: 100%; height: 500px;" src="{{ i[10] }}" alt="">
+                </div>
+            {% endif %}
+            <div>
+                <address style="width: 300px;">
+                    {{ i[6] }}
+                </address>
+            </div>
+            <div>
+                <p class="post3">postid: {{ i[0] }}</p>
+            </div>
+
+            {% if contact == 'allowed' %}
+                <div class="post4">
+                    <form action="orgcontact" method="post">
+                        <input type="submit" value="Contact" class="contactbutton">
+                        <input type="text" value="{{ i[2] }}" style="display:none" name="orgname">
+                    </form>
+                </div>
+            {% endif %}
+        </article>
+    </section>
 {% endfor %}
 
-
-
-{% endif %}
-{% endblock%}
+{% endblock %}
