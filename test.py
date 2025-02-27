@@ -1,4 +1,4 @@
-import pyodbc as odbc
+'''import pyodbc as odbc
 import json
 connection_string ='Driver={ODBC Driver 18 for SQL Server};Server=tcp:2203051050471.database.windows.net,1433;Database=vardaan;Uid=Rishabh;Pwd=Rishpu96;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30'
 
@@ -10,7 +10,7 @@ except odbc.Error as e:
 
 cursor = conn.cursor()
 
-'''query = CREATE TABLE wellwisher (
+query = CREATE TABLE wellwisher (
       userid INT NOT NULL IDENTITY(1,1),
       username VARCHAR(45) NOT NULL,
       name VARCHAR(55) NOT NULL,
@@ -62,7 +62,7 @@ cursor.commit()
 
 
 query3=
-    CREATE TABLE wellwisher_posts(
+  CREATE TABLE wellwisher_posts(
    post_id INT NOT NULL IDENTITY(1,1),
    userid VARCHAR(45) NOT NULL,
    username VARCHAR(45) NOT NULL,
@@ -116,6 +116,7 @@ CREATE TABLE food_post (
 cursor.execute(query5)
 cursor.commit()
 print=("query5 executed")
+<<<<<<< HEAD
 '''
 query='Truncate table wellwisher_posts'
 query3='ALTER TABLE food_post ALTER COLUMN imageurl VARCHAR(100) NULL;'
@@ -130,3 +131,46 @@ Hi i have some old clothes that are in good condition they are not of my use bec
 
 I There we are organising a blanket distribution drive at phase 10 market. we need some people while distributing so they can help us or can bring any unused blankets if they have any . Thank you for your support!!
 
+=======
+
+
+query = CREATE TABLE wellwisher (
+      userid INT NOT NULL IDENTITY(1,1),
+      username VARCHAR(45) NOT NULL,
+      name VARCHAR(55) NOT NULL,
+      mobileno VARCHAR(13) NOT NULL,
+      email VARCHAR(45) NOT NULL,
+      state VARCHAR(60) NOT NULL,
+      country VARCHAR(60) NOT NULL,
+      password VARCHAR(45) NOT NULL,
+      status VARCHAR(45) DEFAULT 'active',
+      PRIMARY KEY (userid),
+      UNIQUE (mobileno),
+      UNIQUE (email),
+      UNIQUE (username)
+    )
+cursor.execute(query)
+cursor.commit()
+print("succesfully executed")
+'''
+import certifi
+from flask import Flask
+from pymongo import MongoClient
+
+app = Flask(__name__)
+
+# Corrected MONGO_URI with proper encoding
+MONGO_URI = "mongodb+srv://2203051050471:Rish%40bh%402004@firstcluster.v2fb3.mongodb.net/vardaan?retryWrites=true&w=majority"
+
+try:
+    client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())  # Connect to MongoDB
+    db = client["vardaan"]
+    print("✅ Connected successfully!")
+except Exception as e:
+    print("❌ Connection failed:", e)
+
+# Insert Data
+collection = db["wellwisher"]
+collection.insert_one({"name": "Rishabh"})
+print("✅ Data inserted successfully!")
+>>>>>>> 2fbe3c3 (codeunnati)

@@ -1,5 +1,6 @@
 {% extends  "layout.html" %}
 {% block body %}
+<<<<<<< HEAD
 <div style="border: 1px solid; display: flex; flex-direction: row; justify-content: space-around; background-color: rgb(191, 167, 138);">
     <form method="get" action="/food">
         Global<input type="radio" name="scope" value="global">
@@ -7,6 +8,20 @@
         <input type="submit" value="Submit">
     </form>
 </div>
+=======
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul style="color: green; text-align: center; list-style: none;">
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    
+>>>>>>> 2fbe3c3 (codeunnati)
 {% if contact=='notallowed' %}
 <div class="redalert"> You can only contact if your login </div>
 
@@ -15,12 +30,18 @@
 <main class="post">
 <section class="post1">
     <div style="display: flex; justify-content: space-between;">
+<<<<<<< HEAD
     <h3>{{i[3]}}</h3> 
     <h3>{{i[12]}}</h3>
+=======
+    <h1>{{i[3]}}</h1> 
+    <h3>{{i[8]}}</h3>
+>>>>>>> 2fbe3c3 (codeunnati)
     </div>
     <div>   
     <p class="post2">{{i[4]}}</p>
     </div>
+<<<<<<< HEAD
     <div style="padding: 50px;">
         <img style="width: 100%; height: 500px;" src="{{i[14]}}" alt="">
     </div>
@@ -31,6 +52,18 @@
     <div>
         <p class="post3">postid:{{i[0]}}</p>
     </div>
+=======
+    {% if i[10]!='noimage' %}
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="{{i[10]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
+    </div>
+    {% endif %}
+ 
+    <h4>Quantity: {{i[5]}}</h4>
+    <h4> Pick Up Time: {{i[7]}}</h4>
+    <address >{{i[6]}}</address>
+
+>>>>>>> 2fbe3c3 (codeunnati)
 </section>
 
 
@@ -46,24 +79,34 @@
 <main class="post">
 <section class="post1">
     <div style="display: flex; justify-content: space-between;">
+<<<<<<< HEAD
     <h3>{{i[3]}}</h3> 
     <h3>{{i[12]}}</h3>
+=======
+    <h1>{{i[3]}}</h1> 
+    <h3>{{i[8]}}</h3>
+>>>>>>> 2fbe3c3 (codeunnati)
     </div>
     <div>   
     <p class="post2">{{i[4]}}</p>
     </div>
+<<<<<<< HEAD
     <div style="padding: 50px;">
         <img style="width: 100%; height: 500px;" src="{{i[14]}}" alt="">
     </div>
+=======
+    {% if i[10]!='noimage' %}
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="{{i[10]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
+    </div>
+    {% endif %}
+ 
+>>>>>>> 2fbe3c3 (codeunnati)
     <h4>Quantity: {{i[5]}}</h4>
     <h4> Pick Up Time: {{i[7]}}</h4>
     <address >{{i[10]}}</address>
 
-    
-    <div>
 
-        <p class="post3">postid:{{i[0]}}</p>
-    </div>
 
     {%if contact=='allowed'%}
     <div class="post4" >

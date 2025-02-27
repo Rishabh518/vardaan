@@ -26,6 +26,7 @@
 {% for i in post_details%}
 <section class="post">
     <article class="post1">
+<<<<<<< HEAD
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 class="postheader">{{i[3]}} </h1>
         <h4 class="postheader" style="margin: 0;">{{i[5]}}</h4>
@@ -45,6 +46,28 @@
     <div>
         <p  class="post3" >postid:{{i[0]}}</p>
     </div>
+=======
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="postheader">{{i[3]}} </h1>
+            <h4 class="postheader" style="margin: 0;">{{i[6]}}</h4>
+        </div>
+        <div class="post2" >
+        {{i[5]}}
+        </div>
+        {% if i[7]!='noimage' %}
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <img src="{{i[7]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
+        </div>
+        {% endif %}
+        <div>
+            <address style="width: 300px;">
+                <p>{{i[9]}}</p>
+                <p>{{i[10]}}</p>
+            </address>
+        </div>
+    
+       
+>>>>>>> 2fbe3c3 (codeunnati)
 </article>
 </section>
 
@@ -56,23 +79,30 @@
     <article class="post1">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <h1 class="postheader">{{i[3]}} </h1>
-        <h4 class="postheader" style="margin: 0;">{{i[5]}}</h4>
+        <h4 class="postheader" style="margin: 0;">{{i[6]}}</h4>
     </div>
     <div class="post2" >
-    {{i[4]}}  
+    {{i[5]}}
     </div>
+<<<<<<< HEAD
     <div style="padding: 50px;">
         <img style="width: 100%; height: 500px;" src="{{i[10]}}" alt="">
     </div>
+=======
+    {% if i[7]!='noimage' %}
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="{{i[7]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
+    </div>
+    {% endif %}
+>>>>>>> 2fbe3c3 (codeunnati)
     <div>
         <address style="width: 300px;">
-            <p>{{i[6]}}</p>
+            <p>{{i[9]}}</p>
+            <p>{{i[10]}}</p>
         </address>
     </div>
 
-    <div>
-        <p class="post3" >postid:{{i[0]}}</p>
-    </div>
+   
 
 {% if contact =='allowed' %}
 <div  class="post4">
