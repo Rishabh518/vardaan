@@ -11,78 +11,6 @@
     {% endif %}
 {% endwith %}
 
-<<<<<<< HEAD
-<div style="border: 1px solid; display: flex; flex-direction: row; justify-content: space-around; background-color: rgb(191, 167, 138);">
-    <form method="get" action="/organizations">
-        Global<input type="radio" name="scope" value="global">
-        Local <input type="radio" name="scope" value="local" checked>
-        <input type="submit" value="Submit">
-=======
-<div class="redalert" > You can only contact if your login </div>
-
-
-{% for i in post_details%}
-<section  class="post">
-    <article class="post1" >
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="postheader">{{i[2]}}</h1>
-        <h4 class="postheader" style="margin: 0;">{{i[6]}}</h4>
-    </div>
-    <div  class="post2"  >
-    {{i[3]}}    
-    </div>
-    {% if i[7]!='noimage' %}
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="{{i[7]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
-    </div>
-    {% endif %}
-    <div>
-        <address style=" margin: 10px; width: 300px;">
-            {{i[9]}}
-            <br>
-            {{i[10]}}
-        </address>
-    </div>
-    
-</article>
-</section>
-{% endfor %}
-
-{% else %}
-
-{% for i in post_details%}
-<section class="post">
-    <article class="post1">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h1 class="postheader">{{i[2]}}</h1>
-        <h4 class="postheader" style="margin: 0;">{{i[6]}}</h4>
-    </div>
-    <div class="post2" >
-    {{i[3]}}    
-    </div>
-    {% if i[7]!='noimage' %}
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <img src="{{i[7]}}" alt="Uploaded Image" style="width: 100%; max-width: 800px; height: 600px;" >
-    </div>
-    {% endif %}
-    <div>
-        <address style=" margin: 10px; width: 300px;">
-            {{i[9]}}
-            <br>
-            {{i[10]}}
-        </address>
-    </div>
-   
-
-{% if contact =='allowed' %}
-<div class="post4"  >
-    <form action="orgcontact" method="post">
-        <input type="submit" value="Contact" class="contactbutton" >
-        <input type="text" value="{{i[2]}}" style="display:none" name="orgname">
->>>>>>> 2fbe3c3 (codeunnati)
-    </form>
-</div>
-
 {% if contact == 'notallowed' %}
     <div class="redalert">You can only contact if you're logged in</div>
 {% endif %}
@@ -92,23 +20,22 @@
         <article class="post1">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h1 class="postheader">{{ i[2] }}</h1>
-                <h4 class="postheader" style="margin: 0;">{{ i[8] }}</h4>
+                <h4 class="postheader" style="margin: 0;">{{ i[6] }}</h4>
             </div>
             <div class="post2">
                 {{ i[3] }}
             </div>
             {% if i[10] %}
                 <div style="padding: 50px;">
-                    <img style="width: 100%; height: 500px;" src="{{ i[10] }}" alt="">
+                    <img style="width: 100%; height: 500px;" src="{{ i[7] }}" alt="">
                 </div>
             {% endif %}
             <div>
                 <address style="width: 300px;">
-                    {{ i[6] }}
+                    {{ i[9] }}
+                    <br>
+                    {{ i[10] }}
                 </address>
-            </div>
-            <div>
-                <p class="post3">postid: {{ i[0] }}</p>
             </div>
 
             {% if contact == 'allowed' %}

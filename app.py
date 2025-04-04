@@ -8,12 +8,6 @@ import pandas as pd
 import joblib
 import sklearn
 import pyodbc as odbc
-<<<<<<< HEAD
-import os
-
-orgpostnumber=101
-wellwisherpostnumber=1001
-=======
 import json
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
@@ -27,7 +21,6 @@ import cloudinary.api
 with open('config.json') as config_file:
     config = json.load(config_file)
     
->>>>>>> 2fbe3c3 (codeunnati)
 def is_valid_mobile(mobile):
     # This regex checks for a 10-digit mobile number starting with valid numbers (e.g., in India)
     pattern = r"^[6-9]\d{9}$"
@@ -43,18 +36,10 @@ app.secret_key = 'your_secret_key'
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=587
 app.config['MAIL_USE_TLS']=True
-<<<<<<< HEAD
-app.config['MAIL_USERNAME']='vardaancontact1@gmail.com'
-app.config['MAIL_PASSWORD']='qznk nluu xejv ebss'
-app.config['MAIL_DEFAULT_SENDER']='vardaancontact1@gmail.com'
-connection_string ='Driver={ODBC Driver 18 for SQL Server};Server=tcp:2203051050471.database.windows.net,1433;Database=vardaan;Uid=Rishabh;Pwd=Rishpu96;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30'
-
-=======
 app.config['MAIL_USERNAME']=config['MAIL_USERNAME']
 app.config['MAIL_PASSWORD']=config['MAIL_PASSWORD']
 app.config['MAIL_DEFAULT_SENDER']=config['MAIL_USERNAME']
 connection_string = config['DB_CONNECTION_STRING']
->>>>>>> 2fbe3c3 (codeunnati)
 try:
     conn = odbc.connect(connection_string)
     print("Connection successful!")
@@ -107,61 +92,13 @@ def home():
         username='nouser' 
     return render_template('index.html',username=username)
 
+
 @app.route('/donate')
 def donate():
-    scope = request.args.get('scope', 'local')  # Default to 'local' if no scope is provided
     if 'username' in session:
         username = session['username']
-        contact = "allowed"
-        try:
-            city = session['city']
-            country = session['country']
-            state = session['state']
-            cursor = conn.cursor()
-            
-            if scope == 'local':
-                # Fetch local posts
-                cursor.execute(
-                    '''SELECT * FROM wellwisher_posts 
-                       WHERE status = 'active' 
-                       AND state = ? 
-                       AND country = ? 
-                       AND city = ? 
-                       ORDER BY post_id DESC''',
-                    (state, country, city)
-                )
-            else:
-                # Fetch global posts
-                cursor.execute(
-                    '''SELECT * FROM wellwisher_posts 
-                       WHERE status = 'active' 
-                       ORDER BY post_id DESC'''
-                )
-            
-            post_details = cursor.fetchall()
-            cursor.close()
-            return render_template('donate.html', username=username, contact=contact, post_details=post_details)
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')      
+        contact="allowed"
     else:
-<<<<<<< HEAD
-        username = 'nouser'
-        contact = "notallowed"
-        
-        try:
-            cursor = conn.cursor()
-            cursor.execute(
-                '''SELECT * FROM wellwisher_posts 
-                   WHERE status = 'active' 
-                   ORDER BY post_id DESC'''
-            )
-            post_details = cursor.fetchall()
-            cursor.close()
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')    
-=======
         username='nouser'  
         contact="notallowed"
     #this is for wellwiher posts
@@ -174,69 +111,16 @@ def donate():
     except:
         return redirect('/home')    
     return render_template('donate.html',username=username,contact=contact,post_details=post_details)
->>>>>>> 2fbe3c3 (codeunnati)
 
-    return render_template('donate.html', username=username, contact=contact, post_details=post_details)
 
+ 
 @app.route('/organizations')
 def organizations():
-    scope = request.args.get('scope', 'local')  # Default to 'local' if no scope is provided
-    
+ #this is for organization posts
     if 'username' in session:
         username = session['username']
-        contact = "allowed"
-        try:
-            city = session['city']
-            country = session['country']
-            state = session['state']
-            cursor = conn.cursor()
-            
-            if scope == 'local':
-                # Fetch local organization posts
-                cursor.execute(
-                    '''SELECT * FROM organization_posts 
-                       WHERE status = 'active' 
-                       AND state = ? 
-                       AND country = ? 
-                       AND city = ? 
-                       ORDER BY post_id DESC''',
-                    (state, country, city)
-                )
-            else:
-                # Fetch global organization posts
-                cursor.execute(
-                    '''SELECT * FROM organization_posts 
-                       WHERE status = 'active' 
-                       ORDER BY post_id DESC'''
-                )
-            
-            post_details = cursor.fetchall()
-            cursor.close()
-            return render_template('organizations.html', username=username, contact=contact, post_details=post_details)
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')      
-
+        contact="allowed"
     else:
-<<<<<<< HEAD
-        username = 'nouser'
-        contact = "notallowed"
-        
-        try:
-            cursor = conn.cursor()
-            cursor.execute(
-                '''SELECT * FROM organization_posts 
-                   WHERE status = 'active' 
-                   ORDER BY post_id DESC'''
-            )
-            post_details = cursor.fetchall()
-            cursor.close()
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')    
-
-    return render_template('organizations.html', username=username, contact=contact, post_details=post_details)
-=======
         username='nouser'  
         contact="notallowed"
     try:
@@ -247,65 +131,20 @@ def organizations():
     except:
         return redirect('/home')       
     return render_template('organizations.html',username=username,contact=contact,post_details=post_details)  
->>>>>>> 2fbe3c3 (codeunnati)
 
 @app.route('/food')
 def food():
-    scope = request.args.get('scope', 'local')  # Default to 'local' if no scope is provided
-
     if 'username' in session:
         username = session['username']
-        contact = "allowed"
-        try:
-            city = session['city']
-            country = session['country']
-            state = session.get('state')
-            cursor = conn.cursor()
-
-            if scope == 'local':
-                # Fetch local food posts
-                cursor.execute(
-                    '''SELECT * FROM food_post 
-                       WHERE status = 'active' 
-                       AND state = ? 
-                       AND country = ? 
-                       AND city = ? 
-                       ORDER BY post_id DESC''',
-                    (state, country, city)
-                )
-            else:
-                # Fetch global food posts
-                cursor.execute(
-                    '''SELECT * FROM food_post 
-                       WHERE status = 'active' 
-                       ORDER BY post_id DESC'''
-                )
-
-            data = cursor.fetchall()
-            cursor.close()
-            return render_template('food.html', username=username, contact=contact, data=data)
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')
-
+        contact="allowed"
     else:
-        username = 'nouser'
-        contact = "notallowed"
-
-        try:
-            cursor = conn.cursor()
-            cursor.execute(
-                '''SELECT * FROM food_post 
-                   WHERE status = 'active' 
-                   ORDER BY post_id DESC'''
-            )
-            data = cursor.fetchall()
-            cursor.close()
-        except Exception as e:
-            print(f"Error: {e}")  # Log the error for debugging
-            return redirect('/home')
-
-    return render_template('food.html', username=username, contact=contact, data=data)
+        username='nouser'
+        contact="notallowed"
+    cursor=conn.cursor()
+    cursor.execute(''' SELECT * FROM food_post WHERE status='active' ORDER BY post_id DESC''')
+    data=cursor.fetchall()
+    cursor.close()
+    return render_template('food.html',username=username,data=data,contact=contact)
 
 @app.route('/login')
 def login():
@@ -338,7 +177,6 @@ def orgregister():
             orgstate = request.form['orgstate']
             orgdesc = request.form['orgdesc']
             orgpswd = request.form['orgpswd']
-            orgcity = request.form['orgcity']
 
             # Check if any mandatory field is missing
             if not all([orgname, orgid, orgemail, orgmobile, orgaddress, orgcountry, orgstate, orgdesc, orgpswd]):
@@ -381,15 +219,9 @@ def orgregister():
                 
 
             # Insert data into the organization table
-<<<<<<< HEAD
-            cursor.execute('''INSERT INTO organization (org_name, org_id, org_email, org_mobile, org_address, org_country, org_state, description, org_pswd,org_city) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
-               (orgname, orgid, orgemail, orgmobile, orgaddress, orgcountry, orgstate, orgdesc, orgpswd,orgcity))
-=======
             cursor.execute('''INSERT INTO organization (org_name, org_id, org_email, org_mobile, org_address, org_country, org_state, description, org_pswd,status) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
                (orgname, orgid, orgemail, orgmobile, orgaddress, orgcountry, orgstate, orgdesc, orgpswd,'pending'))
->>>>>>> 2fbe3c3 (codeunnati)
 
             
             
@@ -421,15 +253,8 @@ def userregister():
             state = request.form['state']
             country =request.form['country']
             password = request.form['password']
-<<<<<<< HEAD
-            city=request.form['city']
-            country=request.form['country']
-            state=request.form['state']
-
-=======
             current_date = str(date.today()) 
             current_month = date.today().month
->>>>>>> 2fbe3c3 (codeunnati)
             # Check if any field is empty
             if not all([username, name, mobile, email, state, country, password]):
                 flash('All fields are required!', 'error')
@@ -470,15 +295,9 @@ def userregister():
                 return redirect('/userregister')
                 
             # Insert new user into the database
-<<<<<<< HEAD
-            cursor.execute('''INSERT INTO wellwisher (username, name, mobileno, email, address, password,country,state,city) 
-                              VALUES (?, ?, ?, ?, ?, ?,?,?,?)''', 
-                           (username, name, mobile, email, address, password,country,state,city))
-=======
             cursor.execute('''INSERT INTO wellwisher (username, name, mobileno, email, state, country, password) 
                               VALUES (?, ?, ?, ?, ?, ? ,?)''', 
                            (username, name, mobile, email, state, country, password))
->>>>>>> 2fbe3c3 (codeunnati)
             cursor.commit()
             print('data added mysql')
             cursor.close()
@@ -498,32 +317,6 @@ def userregister():
 @app.route('/userlogin', methods=['GET', 'POST'])
 def userlogin():
     if request.method == "POST":
-<<<<<<< HEAD
-        username = request.form['username']
-        userpswd = request.form['userpswd']
-        cursor = conn.cursor()
-        cursor.execute('''SELECT * FROM wellwisher WHERE username = ? AND password = ?''', (username, userpswd))
-        login = cursor.fetchone()
-        if login: 
-            session['who'] = 'wellwisher'
-            session['username'] = username
-            cursor.execute('''SELECT email FROM wellwisher WHERE username = ?''', (username,))
-            email = cursor.fetchone()
-            cursor.execute('''SELECT city FROM wellwisher WHERE username = ?''', (username,))
-            city = cursor.fetchone()
-            cursor.execute('''SELECT state FROM wellwisher WHERE username = ?''', (username,))
-            state = cursor.fetchone()
-            cursor.execute('''SELECT country FROM wellwisher WHERE username = ?''', (username,))
-            country = cursor.fetchone()
-            
-            # Extract actual values from fetchone results
-            session['email'] = email[0] if email else None
-            session['city'] = city[0] if city else None
-            session['state'] = state[0] if state else None
-            session['country'] = country[0] if country else None
-            session['login'] = True
-            return redirect('/home')
-=======
         current_date = str(date.today()) 
         current_month = date.today().month 
         username=request.form['username']
@@ -555,9 +348,8 @@ def userlogin():
             else:
                 flash('Your account Has been suspended!!', 'error')
                 return redirect('/login')
->>>>>>> 2fbe3c3 (codeunnati)
         else:
-            flash('Invalid username or password', 'error')
+           flash('Invalid username or password', 'error')
         return redirect('/login')
 
 
@@ -567,33 +359,6 @@ def orglogin():
         orgid=request.form['orgid']
         password=request.form['orgpswd']
         cursor=conn.cursor()
-<<<<<<< HEAD
-        cursor.execute(''' SELECT * FROM organization WHERE org_id = ? and org_pswd =? ''',(orgid,password))
-        login=cursor.fetchone()
-        cursor.close()
-        if login:
-            session['who']='organization'
-            cursor=conn.cursor()
-            cursor.execute(''' SELECT org_name FROM organization WHERE org_id =? ''',(orgid,))
-            org_name=cursor.fetchone()[0]
-            cursor.execute(''' SELECT org_email FROM organization WHERE org_id =? ''',(orgid,))
-            email=cursor.fetchone()[0]
-            cursor.execute(''' SELECT org_country FROM organization WHERE org_id =? ''',(orgid,))
-            country=cursor.fetchone()
-            cursor.execute(''' SELECT org_city FROM organization WHERE org_id =? ''',(orgid,))
-            city=cursor.fetchone()
-            cursor.execute(''' SELECT org_state FROM organization WHERE org_id =? ''',(orgid,))
-            state=cursor.fetchone()
-            cursor.close()
-            session['username']=org_name
-           
-            session['login']=True
-            session['email'] = email[0] if email else None
-            session['city'] = city[0] if city else None
-            session['state'] = state[0] if state else None
-            session['country'] = country[0] if country else None
-            return redirect('/home')
-=======
         cursor.execute(''' SELECT status FROM organization WHERE org_id = ?  ''',(orgid,))
         status=cursor.fetchone()[0]
         if status=='active':
@@ -614,7 +379,6 @@ def orglogin():
             else:
                 flash('Invalid username or password', 'error')
                 return redirect('/login')
->>>>>>> 2fbe3c3 (codeunnati)
         else:
            flash('Invalid username or password', 'error')
         return redirect('/login')   
@@ -645,30 +409,13 @@ def posting():
     global date
     if request.method=='POST':
         postdesc = request.form['postdesc']
-<<<<<<< HEAD
-        image = request.files['img']
-        cursor = conn.cursor()
-        v=joblib.load('vardaanpost.pkl')
-        model=joblib.load('postingspam')
-        global orgpostnumber
-        global wellwisherpostnumber
-    
-  
-        test=v.transform([postdesc])
-        prediction= model.predict(test)
-
-        if(prediction==0):
-            flash("This Post is not a appropriate post for this website")
-            return redirect('/post')
-=======
-        postabout=request.form['postabout']
+        
         image = request.files['img']
         current_time = time.strftime("%Y-%m-%d %H:%M:%S")
         cursor = conn.cursor()
         if session['who']=='organization':
             user='organization'
             username=session['username']
->>>>>>> 2fbe3c3 (codeunnati)
         else:
             user='wellwisher' 
             username=session['username']     
@@ -681,70 +428,6 @@ def posting():
                 flash("This Post is not a appropriate post for this website")
                 return redirect('/post')
             else:
-<<<<<<< HEAD
-                user='wellwisher' 
-                username=session['username']
-
-            if user=='organization': 
-                orgname = session['username']
-                city=session['city']
-                state=session['state']
-                country=session['country']
-                if 'img' in request.files:
-                   
-                    filename=f"{orgname}_{date}_{orgpostnumber}.jpg"
-                    imgpath=os.path.join('static/images/organization',filename)
-                    cursor.execute(''' SELECT org_address FROM organization WHERE org_name=?''',(username,))
-                    useraddress = cursor.fetchone()[0]
-                    cursor.execute(''' SELECT org_id FROM organization WHERE org_name=?''',(username,))
-                    org_id = cursor.fetchone()[0]
-                    cursor.execute('INSERT INTO organization_posts (org_id,org_name,postdesc,org_address,date,state,city,country,imageurl) VALUES(?,?,?,?,?,?,?,?,?)',(org_id,username,postdesc,useraddress,date,state,city,country,imgpath))
-                    cursor.commit()
-                    cursor.close()
-                    image.save(imgpath)
-                    orgpostnumber=orgpostnumber+1
-                    return redirect('/organizations')
-                else:
-                    cursor.execute(''' SELECT org_address FROM organization WHERE org_name=?''',(username,))
-                    useraddress = cursor.fetchone()[0]
-                    cursor.execute(''' SELECT org_id FROM organization WHERE org_name=?''',(username,))
-                    org_id = cursor.fetchone()[0]
-                    cursor.execute('INSERT INTO organization_posts (org_id,org_name,postdesc,org_address,date,state,city,country) VALUES(?,?,?,?,?,?,?,?)',(org_id,username,postdesc,useraddress,date,state,city,country))
-                    cursor.commit()
-                    cursor.close()
-                    return redirect('/organizations')
-            else:
-                if 'img' in request.files :
-                    city=session['city']
-                    state=session['state']
-                    country=session['country']
-                    cursor.execute('SELECT userid from wellwisher WHERE username=?',(username,))
-                    userid=cursor.fetchone()[0]
-                    cursor.execute('SELECT name from wellwisher WHERE username=?',(username,))
-                    name = cursor.fetchone()[0]
-                    filename=f"{username}_{date}_{wellwisherpostnumber}.jpg"
-                    imgpath=os.path.join('static/images/wellwisher',filename)
-                    cursor.execute('INSERT INTO wellwisher_posts (userid,username,name,postdesc,date,state,city,country,imageurl) VALUES(?,?,?,?,?,?,?,?,?)',(userid,username,name,postdesc,date,state,city,country,imgpath))
-                    filename=f"{username}_{date}_{wellwisherpostnumber}.jpg"
-                    imgpath=os.path.join('static/images/wellwisher',filename)
-                    image.save(imgpath)
-                    cursor.commit()
-                    wellwisherpostnumber=wellwisherpostnumber+1
-                    cursor.close()
-                    return redirect('/donate')  
-                else:
-                    city=session['city']
-                    state=session['state']
-                    country=session['country']
-                    cursor.execute('SELECT userid from wellwisher WHERE username=?',(username,))
-                    userid=cursor.fetchone()[0]
-                    cursor.execute('SELECT name from wellwisher WHERE username=?',(username,))
-                    name = cursor.fetchone()[0]
-                    cursor.execute('INSERT INTO wellwisher_posts (userid,username,name,postdesc,date,state,city,country) VALUES(?,?,?,?,?,?,?,?)',(userid,username,name,postdesc,date,state,city,country))
-                    cursor.commit()
-                    cursor.close()  
-                    return redirect('/donate')      
-=======
                 orgname = session['username']
                 cursor.execute(''' SELECT org_address FROM organization WHERE org_name=?''',(username,))
                 useraddress = cursor.fetchone()[0]
@@ -794,7 +477,6 @@ def posting():
                 cursor.commit()
                 cursor.close()
                 return redirect('/donate')        
->>>>>>> 2fbe3c3 (codeunnati)
     return redirect('/post')
     
 @app.route('/foodposting',methods=['POST','GET'])
@@ -803,62 +485,17 @@ def foodposting():
     if request.method=='POST':
         postdesc=request.form['postdesc']
         image = request.files['img']
-<<<<<<< HEAD
-        v=joblib.load('vardaanpost.pkl')
-        model=joblib.load('postingspam')
-        global wellwisherpostnumber
-        country=session['country']
-        state=session['state']
-        city=session['city']
-=======
         current_time = time.strftime("%Y-%m-%d %H:%M:%S")
         v=joblib.load('foodvector.pkl')
         model=joblib.load('foodposting')
         global wellwisherpostnumber
         
->>>>>>> 2fbe3c3 (codeunnati)
         test=v.transform([postdesc])
         prediction= model.predict(test)
 
         if(prediction==0):
             flash("This Post is not a appropriate post for this website")
             return redirect('/post')
-<<<<<<< HEAD
-        if 'img' in request.files:
-            qtyalv=request.form['avlqty']
-            pickloc=request.form['pickup']
-            picktime=request.form['picktime']
-            cursor=conn.cursor()
-            username=session['username']
-            cursor.execute('SELECT userid from wellwisher WHERE username=?',(username,))
-            userid=cursor.fetchone()[0]
-            cursor.execute('SELECT name from wellwisher WHERE username=?',(username,))
-            name = cursor.fetchone()[0]
-            cursor.execute('SELECT address from wellwisher WHERE username=?',(username,))
-            address = cursor.fetchone()[0]
-            filename=f"{username}_{date}_{wellwisherpostnumber}.jpg"
-            imgpath=os.path.join('static/images/wellwisher',filename)
-            cursor.execute(''' INSERT INTO food_post (username,userid,name,postdesc,qtyavl,pickuplocation,pickuptime,address,date,country,state,city,imageurl) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)''',(username,userid,name,postdesc,qtyalv,pickloc,picktime,address,date,country,state,city,imgpath))
-            image.save(imgpath)
-            cursor.commit()
-            wellwisherpostnumber=wellwisherpostnumber+1
-            cursor.close()
-        else:
-            qtyalv=request.form['avlqty']
-            pickloc=request.form['pickup']
-            picktime=request.form['picktime']
-            cursor=conn.cursor()
-            username=session['username']
-            cursor.execute('SELECT userid from wellwisher WHERE username=?',(username,))
-            userid=cursor.fetchone()[0]
-            cursor.execute('SELECT name from wellwisher WHERE username=?',(username,))
-            name = cursor.fetchone()[0]
-            cursor.execute('SELECT address from wellwisher WHERE username=?',(username,))
-            address = cursor.fetchone()[0]
-            cursor.execute(''' INSERT INTO food_post (username,userid,name,postdesc,qtyavl,pickuplocation,pickuptime,address,date,country,state,city) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)''',(username,userid,name,postdesc,qtyalv,pickloc,picktime,address,date,country,state,city))
-            cursor.commit()
-            cursor.close()
-=======
         qtyalv=request.form['avlqty']
         pickloc=request.form['pickup']
         picktime=request.form['picktime']
@@ -882,7 +519,6 @@ def foodposting():
         cursor.execute(''' INSERT INTO food_post (username,userid,name,postdesc,qtyavl,pickuplocation,pickuptime,date,imgurl,state,country) VALUES (?,?,?,?,?,?,?,?,?,?,?)''',(username,userid,name,postdesc,qtyalv,pickloc,picktime,date,imgpath,state,country))
         cursor.commit()
         cursor.close()
->>>>>>> 2fbe3c3 (codeunnati)
         
 
     return redirect('/food')
@@ -1166,4 +802,4 @@ def orgdeletepost():
     
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0",port=8080)
+    app.run(debug=True)
